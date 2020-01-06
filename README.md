@@ -1,4 +1,4 @@
-# EasyDianosticsMaker
+# EasyDiagnosticsMaker
 
 # 環境構築
 ・Pythonインストール
