@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+    <title>Home</title>
+
+    <body>
+        <h1>ホーム</h1>
+        <form action="/make" method="post">
+            <input type="submit" value="診断作成"/>
+        </form>
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>baseText</th>
+                <th> </th>
+            </tr>
+<!--
+            {% for diag in all_diag %}
+            <tr>
+                <td>{{ diag.id }}</td>
+                <td>{{ diag.title }}</td>
+                <td>{{ diag.baseText }}</td>
+            </tr>
+            {% endfor %}
+-->
+        </table>
+    </body>
+</html>

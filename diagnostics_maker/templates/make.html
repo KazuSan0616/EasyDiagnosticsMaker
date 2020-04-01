@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<title>診断作成</title>
+
+    <body>
+        <h1>診断を作成する</h1>
+
+        <form action="/make/create" method="post">
+            診断タイトル:<br/>
+            {{ form.title() }}<br/>
+            基本テキスト:<br/>
+            {{ form.baseText() }}<br/>
+            リスト [LIST]:<br/>
+            <br/>
+            <br/>
+            <input type="submit" value="作成"/>
+        </form>
+    </body>
+</html>
