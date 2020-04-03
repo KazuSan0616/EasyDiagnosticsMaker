@@ -13,7 +13,7 @@ def index():
     db = DbAccessor()
 
     all_diag = db.session.query(Diagnostic).all()
-    return render_template("home.html")
+    return render_template("home.html", all_diag=all_diag)
 
 @mod.route("/make", methods=["GET", "POST"])
 def show_make():
