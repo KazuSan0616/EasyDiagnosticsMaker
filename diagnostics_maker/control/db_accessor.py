@@ -18,6 +18,13 @@ class Diagnostic(Base):
     __tablename__ = "diagnostics"
 
     id = Column(Integer, primary_key=True)
-    title = Column(String(10))
-    baseText = Column(String(10))
+    title = Column(String(100))
+    baseText = Column(String(500))
+
+class DiagnosticLists(Base):
+    __tablename__ = "diagnosticslists"
+
+    id = Column(Integer, primary_key=True)
+    diagId = Column(Integer)
+    listItem =Column(String(100))
 
