@@ -29,7 +29,7 @@ def make_diag():
         # db.session.add(diag)
         # db.session.commit()
 
-        return render_template("home.html")
+        return redirect(url_for("home.index"))
 
     return render_template("make.html", form=form)
 
