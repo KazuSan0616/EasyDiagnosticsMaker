@@ -5,7 +5,7 @@ from flask import (
 from wtforms import (
     Form, StringField, TextField, TextAreaField, validators 
 )
-from ..control.db_accessor import DbAccessor, Diagnostic
+from ..control.db_accessor import DbAccessor, Diagnostic, DiagnosticLists
 
 mod = Blueprint("make", __name__, url_prefix="/make")
 
@@ -19,15 +19,31 @@ def make_diag():
 
     # if form.validate_on_submit():
     if form.validate():
-        # db = DbAccessor()
-        # diag = Diagnostic()
-        # form.populate_obj(diag)
+        db = DbAccessor()
         
-        # diag.title = "hoge"
-        # diag.baseText = "hogehoge"
+        # 診断内容
+        diag = Diagnostic()
+        form.populate_obj(diag)
 
-        # db.session.add(diag)
-        # db.session.commit()
+        db.session.add(diag)
+        db.session.flush()
+
+        id = diag.id
+
+        # リスト内容
+        listContent = str(request.form["listItems"])
+        listItems = listContent.splitlines()
+
+        diagList = []
+        for item in listItems:
+            diagItem = DiagnosticLists()
+            diagItem.diagId = id
+            diagItem.listItem = item
+            diagList.append(diagItem)
+
+        db.session.add_all(diagList)
+
+        db.session.commit()
 
         return redirect(url_for("home.index"))
 
@@ -40,5 +56,9 @@ class MakeForm(Form) :
 
     baseText = TextAreaField("診断結果基本テキスト*", validators=[
         validators.Required(message="診断結果基本テキストを入力してください")
+    ])
+
+    listItems = TextAreaField("[List]*", validators=[
+        validators.Required(message="[List]を入力してください")
     ])
 
