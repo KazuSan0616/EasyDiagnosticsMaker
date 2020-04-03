@@ -10,14 +10,11 @@
             <tr>
                 <th>id</th>
                 <th>title</th>
-                <th>baseText</th>
-                <th> </th>
             </tr>
             {% for diag in all_diag %}
             <tr>
                 <td>{{ diag.id }}</td>
-                <td>{{ diag.title }}</td>
-                <td>{{ diag.baseText }}</td>
+                <td><a href="/diagnostics/{{ diag.id }}">{{ diag.title }}</a></td>
             </tr>
             {% endfor %}
         </table>
