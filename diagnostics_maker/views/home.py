@@ -9,7 +9,10 @@ mod = Blueprint("home", __name__, url_prefix="/")
 
 @mod.route("/")
 def index():
-    #all_diag = Diagnostic.query.all()
+
+    db = DbAccessor()
+
+    all_diag = db.session.query(Diagnostic).all()
     return render_template("home.html")
 
 @mod.route("/make", methods=["GET", "POST"])
