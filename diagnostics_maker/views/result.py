@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask import (
     Blueprint, render_template, request)
-from diagnostics_maker.control.db_accessor import DbAccessor, Diagnostic, DiagnosticLists
+from diagnostics_maker.control.db_accessor import DbAccessor, Diagnostic, DiagnosticsList
 import datetime
 
 mod = Blueprint("result", __name__, url_prefix="/result")
@@ -14,8 +14,8 @@ def index(id = None):
     db = DbAccessor()
     diag = db.session.query(Diagnostic).get(id)
 
-    itemCount = db.session.query(DiagnosticLists).count()
-    itemList = db.session.query(DiagnosticLists).filter(DiagnosticLists.diagId == id)
+    itemCount = db.session.query(DiagnosticsList).count()
+    itemList = db.session.query(DiagnosticsList).filter(DiagnosticsList.diagId == id)
     #diag.id = 1
     #diag.title = "hoge"
     #diag.baseText = "hogehoge"

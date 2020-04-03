@@ -5,7 +5,7 @@ from flask import (
 from wtforms import (
     Form, StringField, TextField, TextAreaField, validators 
 )
-from ..control.db_accessor import DbAccessor, Diagnostic, DiagnosticLists
+from ..control.db_accessor import DbAccessor, Diagnostic, DiagnosticsList
 
 mod = Blueprint("make", __name__, url_prefix="/make")
 
@@ -36,7 +36,7 @@ def make_diag():
 
         diagList = []
         for item in listItems:
-            diagItem = DiagnosticLists()
+            diagItem = DiagnosticsList()
             diagItem.diagId = id
             diagItem.listItem = item
             diagList.append(diagItem)

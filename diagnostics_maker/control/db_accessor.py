@@ -21,10 +21,10 @@ class Diagnostic(Base):
     title = Column(String(100))
     baseText = Column(String(500))
 
-class DiagnosticLists(Base):
-    __tablename__ = "diagnosticslists"
+class DiagnosticsList(Base):
+    __tablename__ = "diagnosticslist"
 
     id = Column(Integer, primary_key=True)
     diagId = Column(Integer)
-    listItem =Column(String(100))
+    listItem = Column(String(100))
 
