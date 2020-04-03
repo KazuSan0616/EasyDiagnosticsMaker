@@ -1,4 +1,3 @@
-from flask import Blueprint
 from flask import (
     Blueprint, render_template, request)
 from diagnostics_maker.control.db_accessor import DbAccessor, Diagnostic, DiagnosticsList
@@ -8,15 +7,15 @@ mod = Blueprint("result", __name__, url_prefix="/result")
 
 @mod.route("/<id>", methods=["POST"])
 def index(id = None):
-
+    # POSTデータを取得
     name = request.form["name"]
 
+    # DBから診断情報を取得
     db = DbAccessor()
     diag = db.session.query(Diagnostic).get(id)
-
-    itemCount = db.session.query(DiagnosticsList).count()
     itemList = db.session.query(DiagnosticsList).filter(DiagnosticsList.diagId == id)
     
+    # 表示テキストを作成
     text = generateDiagResult(diag.baseText, name, itemList)
 
     return render_template("result.html", title=diag.title, baseText=text)
